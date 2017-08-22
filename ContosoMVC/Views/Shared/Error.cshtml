@@ -1,14 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@model System.Web.Mvc.HandleErrorInfo
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width" />
-    <title>错误</title>
+    <title>Error</title>
 </head>
 <body>
     <hgroup>
-        <h1>错误。</h1>
+        <h1>Error.</h1>
         <h2>处理你的请求时出错。</h2>
+        <h2>Exception Details: @Model.Exception.Message</h2>
+        <h2>Controller where the exception happened: @Model.ControllerName</h2>
+        <h2>Action where the exception happened: @Model.ActionName</h2>
     </hgroup>
 </body>
 </html>

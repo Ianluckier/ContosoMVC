@@ -5,9 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using Contoso.Model;
 using Contoso.Service;
+using ContosoMVC.ViewModels;
+using ContosoMVC.Filters;
 
 namespace ContosoMVC.Controllers
 {
+    [HandleError]
+    //[LogActionFilter]
     public class DepartmentController : Controller
     {
         DepartmentService departmentService;
@@ -19,6 +23,9 @@ namespace ContosoMVC.Controllers
         // Get All Departments
         public ActionResult Index()
         {
+            //int i = 0;
+            //int x = 1;
+            //int z = x / i;
             List<Department> departments = departmentService.GetAllDepartments();
             return View(departments);
         }
@@ -32,8 +39,14 @@ namespace ContosoMVC.Controllers
         [HttpPost]
         public ActionResult Create(Department department)
         {
-            departmentService.AddDepartment(department);
-            return RedirectToAction("Index");
+            if(ModelState.IsValid)
+            {
+                departmentService.AddDepartment(department);
+                return RedirectToAction("Index");
+            } else
+            {
+                return View(department);
+            }
         }
 
         // Get One Department Detail Information
@@ -69,6 +82,26 @@ namespace ContosoMVC.Controllers
         {
             departmentService.DeleteDepartment(department);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult CreateDepartmentCourse()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateDepartmentCourse(DepartmentCourseViewModel model)
+        {
+            Department dept = new Department();
+            dept.Name = model.DepartmentName;
+            dept.Budget = model.DepartmentBudget;
+            departmentService.AddDepartment(dept);
+
+            CourseService courseService = new CourseService();
+            Course course = new Course();
+            course.Title = model.CourseName;
+            courseService.AddCourse(course);
+            return View();
         }
     }
 }

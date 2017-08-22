@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201708162248387_ReWriteRoles.Designer.cs">
       <DependentUpon>201708162248387_ReWriteRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708221519546_testMyMigration.cs" />
+    <Compile Include="Migrations\201708221519546_testMyMigration.Designer.cs">
+      <DependentUpon>201708221519546_testMyMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PersonRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -136,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708162248387_ReWriteRoles.resx">
       <DependentUpon>201708162248387_ReWriteRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708221519546_testMyMigration.resx">
+      <DependentUpon>201708221519546_testMyMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
